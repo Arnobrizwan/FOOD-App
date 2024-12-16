@@ -12,11 +12,20 @@ interface Restaurant {
   deliveryTime: number;
   menus: Menu[];
 }
-
+interface MenuItem {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+  }
+  
 interface Menu {
   id: string;
   name: string;
+  description: string;
   price: number;
+  image: string;
 }
 
 const RestaurantDetail = () => {
@@ -40,10 +49,23 @@ const RestaurantDetail = () => {
         cuisines: ["Italian", "Mexican"],
         deliveryTime: 30,
         menus: [
-          { id: "1", name: "Pasta", price: 12 },
-          { id: "2", name: "Pizza", price: 15 },
+          {
+            id: "1",
+            name: "Pasta",
+            description: "Delicious Italian pasta with creamy sauce",
+            price: 12,
+            image: "https://via.placeholder.com/300x200",
+          },
+          {
+            id: "2",
+            name: "Pizza",
+            description: "Classic margherita pizza with fresh tomatoes",
+            price: 15,
+            image: "https://via.placeholder.com/300x200",
+          },
         ],
       };
+
       // Simulate API delay
       setTimeout(() => {
         setSingleRestaurant(mockData);
@@ -91,7 +113,9 @@ const RestaurantDetail = () => {
               </div>
             </div>
           </div>
-        
+          {singleRestaurant?.menus && singleRestaurant.menus.length > 0 && (
+  <AvailableMenu menus={singleRestaurant.menus as MenuItem[]} />
+)}
 
         </div>
       )}

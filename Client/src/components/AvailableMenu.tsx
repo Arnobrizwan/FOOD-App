@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter } from "./ui/card";
 import { useNavigate } from "react-router-dom";
 
 interface MenuItem {
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -21,8 +22,11 @@ const AvailableMenu = ({ menus }: { menus: MenuItem[] }) => {
     <div className="md:p-4">
       <h1 className="text-xl md:text-2xl font-extrabold mb-6">Available Menus</h1>
       <div className="grid md:grid-cols-3 gap-4">
-        {menus.map((menu, idx) => (
-          <Card key={idx} className="max-w-xs mx-auto shadow-lg rounded-lg overflow-hidden">
+        {menus.map((menu) => (
+          <Card
+            key={menu.id}
+            className="max-w-xs mx-auto shadow-lg rounded-lg overflow-hidden"
+          >
             {/* Menu Image */}
             <img
               src={menu.image || "https://via.placeholder.com/300x200"}
