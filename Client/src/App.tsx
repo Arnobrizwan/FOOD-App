@@ -6,13 +6,19 @@ import Signup from './auth/Signup';
 import ForgetPassword from "./auth/ForgetPassword";
 import ResetPassword from "./auth/ResetPassword";
 import VerifyEmail from "./auth/VerifyEmail";
-import Navbar from "./components/Navbar"
+import HereSection from './components/HereSection';
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Navbar/>,//use mainlayout or navbar  
+    element: <MainLayout/>,//use mainlayout or navbar  
     children: [
+      {
+        path:"/",
+        element:<HereSection/>
+      }
+    ],
+  },  
       {
         path: "/login",
         element: <Login />
@@ -33,8 +39,8 @@ const appRouter = createBrowserRouter([
         path: "/verify-email",
         element: <VerifyEmail />,
       },
-    ],
-  },
+    
+  
 ]);
 
 function App() {
