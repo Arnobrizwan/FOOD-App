@@ -11,9 +11,9 @@ export type FilterOptionsState = {
 
 const filterOptions: FilterOptionsState[] = [
   { id: "burger", label: "Burger" },
-  { id: "thali", label: "Thali" },
+  { id: "pizza", label: "Pizza" },
   { id: "biryani", label: "Biryani" },
-  { id: "momos", label: "Momos" },
+  { id: "wrap", label: "Wrap" },
 ];
 
 const FilterPage = ({ onFilterChange }: { onFilterChange: (filters: string[]) => void }) => {
