@@ -91,9 +91,8 @@ const RestaurantDetail = () => {
               </div>
             </div>
           </div>
-          {singleRestaurant?.menus && (
-            <AvailableMenu menus={singleRestaurant?.menus} />
-          )}
+        
+
         </div>
       )}
     </div>
