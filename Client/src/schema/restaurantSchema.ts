@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const restaurantFormSchema = z.object({
+export const restaurantFromSchema = z.object({
   restaurantName: z
     .string()
     .nonempty({ message: "Restaurant name is required" })
@@ -44,4 +44,4 @@ export const restaurantFormSchema = z.object({
     .optional(),
 });
 
-export type RestaurantFormSchema = z.infer<typeof restaurantFormSchema>;
+export type RestaurantFormSchema = z.infer<typeof restaurantFromSchema>;
