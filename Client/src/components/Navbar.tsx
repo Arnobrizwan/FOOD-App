@@ -50,7 +50,7 @@ const Navbar = () => {
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
         <Link to="/">
-          <h1 className="font-bold md:font-extrabold text-2xl">PatelEats</h1>
+          <h1 className="font-bold md:font-extrabold text-2xl">FoodTiger</h1>
         </Link>
         <div className="hidden md:flex items-center gap-10">
           <div className="hidden md:flex items-center gap-6">
@@ -107,7 +107,7 @@ const Navbar = () => {
             <div>
               <Avatar>
                 <AvatarImage src={user?.profilePicture} alt="profilephoto" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback>AR</AvatarFallback>
               </Avatar>
             </div>
             <div>
@@ -154,7 +154,7 @@ const MobileNavbar = () => {
       </SheetTrigger>
       <SheetContent className="flex flex-col">
         <SheetHeader className="flex flex-row items-center justify-between mt-2">
-          <SheetTitle>PatelEats</SheetTitle>
+          <SheetTitle>FoodTiger</SheetTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
@@ -222,9 +222,9 @@ const MobileNavbar = () => {
           <div className="flex flex-row items-center gap-2">
             <Avatar>
               <AvatarImage src={user?.profilePicture} />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>AR</AvatarFallback>
             </Avatar>
-            <h1 className="font-bold">Patel Mernstack</h1>
+            <h1 className="font-bold">Arnob Rizwan</h1>
           </div>
           <SheetClose asChild>
             {loading ? (
