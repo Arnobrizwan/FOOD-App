@@ -4,6 +4,7 @@ import { client, sender } from "./mailtrap";
 
 
 
+
 export const sendVerificationEmail = async (email: string, verificationToken: string) => {
     const recipient = [{ email }];
     try {
@@ -27,10 +28,10 @@ export const sendWelcomeEmail = async (email: string, name: string) => {
         const res = await client.send({
             from: sender,
             to: recipient,
-            subject: 'Welcome to PatelEats',
+            subject: 'Welcome to FoodTiger',
             html:htmlContent,
             template_variables:{
-                company_info_name:"PatelEats",
+                company_info_name:"FoodTiger",
                 name:name
             }
         });
