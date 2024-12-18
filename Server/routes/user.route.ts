@@ -1,4 +1,5 @@
-/*import express from "express";
+import express from "express";
+
 import { checkAuth, forgotPassword, login, logout, resetPassword, signup, updateProfile, verifyEmail } from "../controller/user.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -13,4 +14,5 @@ router.route("/forgot-password").post(forgotPassword);
 router.route("/reset-password/:token").post(resetPassword);
 router.route("/profile/update").put(isAuthenticated,updateProfile);
 
-export default router;*/
+export default router;
+
