@@ -6,8 +6,8 @@ import { asyncHandler } from "../middlewares/asyncHandler";
 
 const router = express.Router();
 
-router.route("/").post(upload.single("image"), addMenu);
-router.route("/:id").put( upload.single("image"), editMenu);
+router.route("/").post(isAuthenticated, upload.single("image"), addMenu);
+router.route("/:id").put(isAuthenticated, upload.single("image"), editMenu);
  
 
 // router.route("/").post( upload.single("image"), asyncHandler(addMenu));
