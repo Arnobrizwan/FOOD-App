@@ -9,6 +9,7 @@ import restaurantRoute from "./routes/restaurant.route";
 import menuRoute from "./routes/menu.route";
 import orderRoute from "./routes/order.route";
 import path from "path";
+import morgan from "morgan";
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin: "https://food-app-yt.onrender.com",
+    origin: "http://localhost:4000",
     credentials: true
 }
 app.use(cors(corsOptions));
@@ -35,10 +36,12 @@ app.use("/api/v1/restaurant", restaurantRoute);
 app.use("/api/v1/menu", menuRoute);
 app.use("/api/v1/order", orderRoute);
 
-app.use(express.static(path.join(DIRNAME,"/client/dist")));
-app.use("*",(_,res) => {
-    res.sendFile(path.resolve(DIRNAME, "client","dist","index.html"));
+app.use(express.static(path.join(DIRNAME, "/client/dist")));
+app.use("*", (_, res) => {
+    res.sendFile(path.resolve(DIRNAME, "client", "dist", "index.html"));
 });
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :request-body'));
 
 app.listen(PORT, () => {
     connectDB();

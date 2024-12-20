@@ -1,5 +1,3 @@
-//mongopassword=XUcFYxRYj5J3OgLd
-//arnobrizwan23
 import mongoose from "mongoose";
 
 const connectDB = async () => {
@@ -10,14 +8,14 @@ const connectDB = async () => {
     }
 
     // Mongoose connection options
-    const options = {
-      serverSelectionTimeoutMS: 5000, // Fail quickly if server is not found (5 seconds)
-      connectTimeoutMS: 10000,       // Time to establish a connection (10 seconds)
-      socketTimeoutMS: 45000,        // Wait time for server response after connecting (45 seconds)
-    };
+    // const options = {
+    //   serverSelectionTimeoutMS: 5000, // Fail quickly if server is not found (5 seconds)
+    //   connectTimeoutMS: 10000,       // Time to establish a connection (10 seconds)
+    //   socketTimeoutMS: 45000,        // Wait time for server response after connecting (45 seconds)
+    // };
 
     // Attempt to connect to MongoDB
-    await mongoose.connect(process.env.MONGO_URI, options);
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("✅ MongoDB connected successfully!");
   } catch (error: any) {
     console.error("❌ Failed to connect to MongoDB:", error.message);
