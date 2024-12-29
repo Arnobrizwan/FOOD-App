@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     // Check if MONGO_URI exists
-    if (!process.env.MONGO_URI) {
-      throw new Error("MONGO_URI is not defined in the environment variables.");
-    }
+    // if (!process.env.MONGO_URI) {
+    //   throw new Error("MONGO_URI is not defined in the environment variables.");
+    // }
 
     // Mongoose connection options
     // const options = {
@@ -15,7 +15,7 @@ const connectDB = async () => {
     // };
 
     // Attempt to connect to MongoDB
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect("mongodb+srv://arnobrizwan23:XUcFYxRYj5J3OgLd@cluster0.xr6hb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
     console.log("✅ MongoDB connected successfully!");
   } catch (error: any) {
     console.error("❌ Failed to connect to MongoDB:", error.message);

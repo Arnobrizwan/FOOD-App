@@ -77,18 +77,18 @@ const Login = () => {
           </div>
         </div>
         <div className="mb-10">
-          {loading ? (
+          {/* {loading ? (
             <Button disabled className="w-full bg-orange hover:bg-hoverOrange">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
             </Button>
-          ) : (
+          ) : ( */}
             <Button
               type="submit"
               className="w-full bg-orange hover:bg-hoverOrange"
             >
               Login
             </Button>
-          )}
+          {/* )} */}
           <div className="mt-4">
             <Link
               to="/forgot-password"

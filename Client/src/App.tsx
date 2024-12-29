@@ -29,9 +29,9 @@ const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (!user?.isVerified) {
-    return <Navigate to="/verify-email" replace />;
-  }
+  // if (!user?.isVerified) {
+  //   return <Navigate to="/verify-email" replace />;
+  // }
   return children;
 };
 
@@ -119,10 +119,10 @@ const appRouter = createBrowserRouter([
     path: "/reset-password",
     element: <ResetPassword />,
   },
-  {
-    path: "/verify-email",
-    element: <VerifyEmail />,
-  },
+  // {
+  //   path: "/verify-email",
+  //   element: <VerifyEmail />,
+  // },
 ]);
 
 function App() {
@@ -133,6 +133,8 @@ function App() {
     checkAuthentication();
     initializeTheme();
   },[checkAuthentication])
+
+  console.log('test')
 
   if(isCheckingAuth) return <Loading/>
   return (
