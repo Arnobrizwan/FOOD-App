@@ -20,14 +20,14 @@ const PORT = process.env.PORT || 3000;
 const DIRNAME = path.resolve();
 
 // default middleware for any mern project
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin: "http://localhost:5173",
-    credentials: true
-}
+  origin: "http://localhost:5173",
+  credentials: true,
+};
 app.use(cors(corsOptions));
 
 // app.use(morgan(':method :url :status :res[content-length] - :response-time ms :request-body'));
@@ -42,8 +42,7 @@ app.use("/api/v1/order", orderRoute);
 //     res.sendFile(path.resolve(DIRNAME, "client", "dist", "index.html"));
 // });
 
-
 app.listen(PORT, async () => {
-    await connectDB();
-    console.log(`Server listen at port ${PORT}`);
+  await connectDB();
+  console.log(`Server listen at port ${PORT}`);
 });

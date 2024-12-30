@@ -1,4 +1,3 @@
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./auth/Signup";
 
@@ -20,8 +19,8 @@ import { useEffect } from "react";
 import Loading from "./components/Loading";
 import { useThemeStore } from "./store/useThemeStore";
 import ForgotPassword from "./auth/ForgotPassword";
-import Cart from "./components/Cart";
-import Login from "./auth/Login";
+import Cart from "./components/cart";
+import Login from "./auth/login";
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, user } = useUserStore();
@@ -37,23 +36,23 @@ const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
 
 const AuthenticatedUser = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, user } = useUserStore();
-  if(isAuthenticated && user?.isVerified){
-    return <Navigate to="/" replace/>
+  if (isAuthenticated && user?.isVerified) {
+    return <Navigate to="/" replace />;
   }
   return children;
 };
 
-const AdminRoute = ({children}:{children:React.ReactNode}) => {
-  const {user, isAuthenticated} = useUserStore();
-  if(!isAuthenticated){
-    return <Navigate to="/login" replace/>
+const AdminRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, isAuthenticated } = useUserStore();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
   }
-  if(!user?.admin){
-    return <Navigate to="/" replace/>
+  if (!user?.admin) {
+    return <Navigate to="/" replace />;
   }
 
   return children;
-}
+};
 
 const appRouter = createBrowserRouter([
   {
@@ -91,29 +90,53 @@ const appRouter = createBrowserRouter([
       // admin services start from here
       {
         path: "/admin/restaurant",
-        element:<AdminRoute><Restaurant /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <Restaurant />
+          </AdminRoute>
+        ),
       },
       {
         path: "/admin/menu",
-        element:<AdminRoute><AddMenu /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AddMenu />
+          </AdminRoute>
+        ),
       },
       {
         path: "/admin/orders",
-        element:<AdminRoute><Orders /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <Orders />
+          </AdminRoute>
+        ),
       },
     ],
   },
   {
     path: "/login",
-    element:<AuthenticatedUser><Login /></AuthenticatedUser>,
+    element: (
+      <AuthenticatedUser>
+        <Login />
+      </AuthenticatedUser>
+    ),
   },
   {
     path: "/signup",
-    element:<AuthenticatedUser><Signup /></AuthenticatedUser> ,
+    element: (
+      <AuthenticatedUser>
+        <Signup />
+      </AuthenticatedUser>
+    ),
   },
   {
     path: "/forgot-password",
-    element: <AuthenticatedUser><ForgotPassword /></AuthenticatedUser>,
+    element: (
+      <AuthenticatedUser>
+        <ForgotPassword />
+      </AuthenticatedUser>
+    ),
   },
   {
     path: "/reset-password",
@@ -126,17 +149,17 @@ const appRouter = createBrowserRouter([
 ]);
 
 function App() {
-  const initializeTheme = useThemeStore((state:any) => state.initializeTheme);
-  const {checkAuthentication, isCheckingAuth} = useUserStore();
+  const initializeTheme = useThemeStore((state: any) => state.initializeTheme);
+  const { checkAuthentication, isCheckingAuth } = useUserStore();
   // checking auth every time when page is loaded
-  useEffect(()=>{
+  useEffect(() => {
     checkAuthentication();
     initializeTheme();
-  },[checkAuthentication])
+  }, [checkAuthentication]);
 
-  console.log('test')
+  console.log("test");
 
-  if(isCheckingAuth) return <Loading/>
+  if (isCheckingAuth) return <Loading />;
   return (
     <main>
       <RouterProvider router={appRouter}></RouterProvider>
