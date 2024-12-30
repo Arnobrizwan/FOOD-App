@@ -79,7 +79,9 @@ export const createCheckoutSession = async (req: Request, res: Response) => {
       },
     });
     if (!session.url) {
-      res.status(400).json({ success: false, message: "Error while creating session" });
+      res
+        .status(400)
+        .json({ success: false, message: "Error while creating session" });
       return;
     }
     await order.save();
