@@ -25,13 +25,8 @@ const ResetPassword = () => {
             />
             <LockKeyholeIcon className="absolute inset-y-2 left-2 text-gray-600 pointer-events-none"/>
         </div>
-        {
-            loading ? (
-                <Button disabled className="bg-orange hover:bg-hoverOrange"><Loader2 className="mr-2 h-4 w-4 animate-spin"/> Please wait</Button>
-            ) : (
-                <Button className="bg-orange hover:bg-hoverOrange">Reset Password</Button>
-            )
-        }
+        <Button className="bg-orange hover:bg-hoverOrange">Reset Password</Button>
+
         <span className="text-center">
             Back to{" "}
             <Link to="/login" className="text-blue-500">Login</Link>

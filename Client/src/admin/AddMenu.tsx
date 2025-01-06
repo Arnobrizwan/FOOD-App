@@ -45,7 +45,7 @@ const AddMenu = () => {
       setError(fieldErrors as Partial<MenuFormSchema>);
       return;
     }
-    // api ka kaam start from here
+    
     try {
       const formData = new FormData();
       formData.append("name", input.name);
@@ -145,16 +145,9 @@ const AddMenu = () => {
                 )}
               </div>
               <DialogFooter className="mt-5">
-                {loading ? (
-                  <Button disabled className="bg-orange hover:bg-hoverOrange">
-                    <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-                    Please wait
-                  </Button>
-                ) : (
-                  <Button className="bg-orange hover:bg-hoverOrange">
+              <Button type="submit" className="bg-orange hover:bg-hoverOrange">
                     Submit
                   </Button>
-                )}
               </DialogFooter>
             </form>
           </DialogContent>

@@ -131,14 +131,8 @@ const EditMenu = ({
             {error && <span className="text-xs font-medium text-red-600">{error.image?.name}</span>}
           </div>
           <DialogFooter className="mt-5">
-            {loading ? (
-              <Button disabled className="bg-orange hover:bg-hoverOrange">
-                <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <Button className="bg-orange hover:bg-hoverOrange">Submit</Button>
-            )}
+          <Button className="bg-orange hover:bg-hoverOrange">Submit</Button>
+
           </DialogFooter>
         </form>
       </DialogContent>
