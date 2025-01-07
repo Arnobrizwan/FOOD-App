@@ -109,7 +109,7 @@ const EditMenu = ({
             {error && <span className="text-xs font-medium text-red-600">{error.description}</span>}
           </div>
           <div>
-            <Label>Price in (Rupees)</Label>
+            <Label>Price in (BDT)</Label>
             <Input
               type="number"
               name="price"
