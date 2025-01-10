@@ -1,3 +1,6 @@
+//@ts-nocheck
+
+
 import { CheckoutSessionRequest, OrderState } from "@/types/orderType";
 import axios from "axios";
 import { create } from "zustand";

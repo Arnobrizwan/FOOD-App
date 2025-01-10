@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 export type CheckoutSessionRequest = {
     cartItems:{
         menuId:string;

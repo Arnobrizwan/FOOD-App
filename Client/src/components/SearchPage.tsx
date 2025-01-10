@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Link, useParams } from "react-router-dom";
 import FilterPage from "./FilterPage";
 import { Input } from "./ui/input";

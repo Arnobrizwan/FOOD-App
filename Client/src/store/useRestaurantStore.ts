@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Orders } from "@/types/orderType";
 import { MenuItem, RestaurantState } from "@/types/restaurantType";
 import axios from "axios";

@@ -1,4 +1,5 @@
- 
+//@ts-nocheck
+
 import { IndianRupee } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";

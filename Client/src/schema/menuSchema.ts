@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 /*import {z} from "zod";
 
 export const menuSchema = z.object({

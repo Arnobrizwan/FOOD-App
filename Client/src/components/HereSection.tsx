@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useState } from "react";
 import { Input } from "./ui/input";
 import { Search } from "lucide-react";

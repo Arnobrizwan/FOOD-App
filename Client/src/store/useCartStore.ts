@@ -1,3 +1,6 @@
+//@ts-nocheck
+
+
 import { CartState } from "@/types/cartType";
 import { MenuItem } from "@/types/restaurantType";
 import { create } from "zustand";

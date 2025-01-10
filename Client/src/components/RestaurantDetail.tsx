@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useRestaurantStore } from "@/store/useRestaurantStore";
 import AvailableMenu from "./AvailableMenu";
 

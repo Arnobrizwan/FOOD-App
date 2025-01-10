@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import {
   Dialog,

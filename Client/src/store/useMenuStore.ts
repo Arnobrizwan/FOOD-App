@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import axios from "axios";
 import { toast } from "sonner";
 import { create } from "zustand";

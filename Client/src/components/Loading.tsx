@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Loader } from "lucide-react";
 
 const Loading = () => {

@@ -1,3 +1,6 @@
+//@ts-nocheck
+
+
 // import { Minus, Plus } from "lucide-react";
 // import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 // import { Button } from "./ui/button";

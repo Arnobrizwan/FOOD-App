@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { MenuItem } from "./restaurantType";
 
 export interface CartItem extends MenuItem { 

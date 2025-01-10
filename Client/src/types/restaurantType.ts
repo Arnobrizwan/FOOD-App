@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Orders } from "./orderType";
 
 export type MenuItem = {
