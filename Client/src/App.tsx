@@ -20,8 +20,8 @@ import { useEffect } from "react";
 import Loading from "./components/Loading";
 import { useThemeStore } from "./store/useThemeStore";
 import ForgotPassword from "./auth/ForgotPassword";
-import Cart from "./components/Cart";
 import Login from "./auth/Login";
+import Cart from "./components/Cart";
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useUserStore();
