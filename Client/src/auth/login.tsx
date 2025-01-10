@@ -89,14 +89,14 @@ const Login = () => {
               Login
             </Button>
           {/* )} */}
-          <div className="mt-4">
+          {/* <div className="mt-4">
             <Link
               to="/forgot-password"
               className="hover:text-blue-500 hover:underline"
             >
               Forget Password
             </Link>
-          </div>
+          </div> */}
         </div>
         <Separator />
         <p className="mt-2">

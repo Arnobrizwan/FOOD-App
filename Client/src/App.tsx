@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./auth/Signup";
 
 import ResetPassword from "./auth/ResetPassword";
-import VerifyEmail from "./auth/VerifyEmail";
 import HereSection from "./components/HereSection";
 import MainLayout from "./layout/MainLayout";
 import Profile from "./components/Profile";
@@ -24,7 +23,7 @@ import Cart from "./components/Cart";
 import Login from "./auth/Login";
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated, user } = useUserStore();
+  const { isAuthenticated } = useUserStore();
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
