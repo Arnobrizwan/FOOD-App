@@ -28,7 +28,8 @@ const corsOptions = {
     origin: "http://localhost:5174",
     credentials: true,
 }
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors())
 
 // app.use(morgan(':method :url :status :res[content-length] - :response-time ms :request-body'));
 // api

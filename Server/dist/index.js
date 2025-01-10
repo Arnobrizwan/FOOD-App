@@ -36,7 +36,8 @@ const corsOptions = {
     origin: "http://localhost:5174",
     credentials: true,
 };
-app.use((0, cors_1.default)(corsOptions));
+// app.use(cors(corsOptions));
+app.use((0, cors_1.default)());
 // app.use(morgan(':method :url :status :res[content-length] - :response-time ms :request-body'));
 // api
 app.use("/api/v1/user", user_route_1.default);
