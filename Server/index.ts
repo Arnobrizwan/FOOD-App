@@ -28,10 +28,14 @@ const corsOptions = {
     origin: "http://localhost:5174",
     credentials: true,
 }
+
 // app.use(cors(corsOptions));
 app.use(cors())
+morgan.token('type', function (req, res) { return req.headers['content-type'] })
 
-// app.use(morgan(':method :url :status :res[content-length] - :response-time ms :request-body'));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+
+
 // api
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/restaurant", restaurantRoute);

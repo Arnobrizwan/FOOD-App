@@ -23,6 +23,7 @@ const restaurant_route_1 = __importDefault(require("./routes/restaurant.route"))
 const menu_route_1 = __importDefault(require("./routes/menu.route"));
 const order_route_1 = __importDefault(require("./routes/order.route"));
 const path_1 = __importDefault(require("path"));
+const morgan_1 = __importDefault(require("morgan"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
@@ -38,7 +39,8 @@ const corsOptions = {
 };
 // app.use(cors(corsOptions));
 app.use((0, cors_1.default)());
-// app.use(morgan(':method :url :status :res[content-length] - :response-time ms :request-body'));
+morgan_1.default.token('type', function (req, res) { return req.headers['content-type']; });
+app.use((0, morgan_1.default)(':method :url :status :res[content-length] - :response-time ms'));
 // api
 app.use("/api/v1/user", user_route_1.default);
 app.use("/api/v1/restaurant", restaurant_route_1.default);
