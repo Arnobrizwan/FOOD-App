@@ -10,7 +10,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 // const API_END_POINT = "http://localhost:3000/api/v1/restaurant";
 const API_END_POINT = "https://food-app-2atv.onrender.com/api/v1/restaurant";
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 
 
 export const useRestaurantStore = create<RestaurantState>()(persist((set, get) => ({

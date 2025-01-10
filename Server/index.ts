@@ -29,8 +29,9 @@ const corsOptions = {
     credentials: true,
 }
 
+app.options('*', cors());
 // app.use(cors(corsOptions));
-app.use(cors())
+app.use(cors({ origin: '*' }));
 morgan.token('type', function (req, res) { return req.headers['content-type'] })
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
