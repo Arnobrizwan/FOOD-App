@@ -9,7 +9,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 // const API_END_POINT: string = "http://localhost:3000/api/v1/order";
 const API_END_POINT = "https://food-app-2atv.onrender.com/api/v1/order";
 
-axios.defaults.withCredentials = false;
+//axios.defaults.withCredentials = false;
 
 export const useOrderStore = create<OrderState>()(persist((set => ({
     loading: false,
