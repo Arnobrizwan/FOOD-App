@@ -47,10 +47,10 @@ app.use("/api/v1/user", user_route_1.default);
 app.use("/api/v1/restaurant", restaurant_route_1.default);
 app.use("/api/v1/menu", menu_route_1.default);
 app.use("/api/v1/order", order_route_1.default);
-// app.use(express.static(path.join(DIRNAME, "/client/dist")));
-// app.use("*", (_, res) => {
-//     res.sendFile(path.resolve(DIRNAME, "client", "dist", "index.html"));
-// });
+app.use(express_1.default.static(path_1.default.join(DIRNAME, "/Client/dist")));
+app.use("*", (_, res) => {
+    res.sendFile(path_1.default.resolve(DIRNAME, "Client", "dist", "index.html"));
+});
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, connectDB_1.default)();
     console.log(`Server listen at port ${PORT}`);
