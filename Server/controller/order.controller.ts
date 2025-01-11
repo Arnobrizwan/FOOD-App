@@ -160,7 +160,7 @@ export const createLineItems = (
 
     return {
       price_data: {
-        currency: "RM",
+        currency: "myr",
         product_data: {
           name: menuItem.name,
           images: [menuItem.image],
