@@ -8,7 +8,7 @@
       "dev": "nodemon server/index.ts",
       "stripe":"stripe listen --forward-to localhost:8000/api/v1/order/webhook",
       "build":"npm install",
-      "start":"cd Server && npm install && nodemon dist/index.js"
+      "start":"cd Server && npm install && node dist/index.js"
     },
     "keywords": [],
     "author": "",
