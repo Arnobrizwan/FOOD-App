@@ -309,7 +309,7 @@ const AddMenu = () => {
                 )}
               </div>
               <div>
-                <Label>Price in (BDT)</Label>
+                <Label>Price in (RM)</Label>
                 <Input
                   type="number"
                   name="price"
