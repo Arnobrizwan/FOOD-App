@@ -142,7 +142,7 @@ const createLineItems = (checkoutSessionRequest, menuItems) => {
             throw new Error(`Menu item id not found`);
         return {
             price_data: {
-                currency: "inr",
+                currency: "RM",
                 product_data: {
                     name: menuItem.name,
                     images: [menuItem.image],
