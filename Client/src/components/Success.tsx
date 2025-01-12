@@ -55,7 +55,7 @@ const Success = () => {
                     </div>
                     <div className="text-right">
                       <div className="text-gray-800 dark:text-gray-200 flex items-center">
-                        <IndianRupee />
+                        < MalaysianRinggit />
                         <span className="text-lg font-medium">{item.price}</span>
                       </div>
                     </div>
