@@ -47,6 +47,7 @@ const Restaurant = () => {
     // add restaurant api implementation start from here
     try {
       const formData = new FormData();
+      const userId = JSON.parse(localStorage.getItem('user-name') || '{}').state?.user?._id;
       formData.append("restaurantName", input.restaurantName);
       formData.append("city", input.city);
       formData.append("country", input.country);
