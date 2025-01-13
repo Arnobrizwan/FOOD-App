@@ -9,7 +9,12 @@ const orderSchema = new mongoose_1.default.Schema({
     user: {
         type: mongoose_1.default.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: false
+    },
+    deliveryUser: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false
     },
     restaurant: {
         type: mongoose_1.default.Schema.Types.ObjectId,

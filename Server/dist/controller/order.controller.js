@@ -12,12 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createLineItems = exports.stripeWebhook = exports.createCheckoutSession = exports.getOrders = void 0;
+exports.createLineItems = exports.stripeWebhook = exports.createCheckoutSession = exports.getOrdersForDeliveryMan = exports.getOrders = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const restaurant_model_1 = require("../models/restaurant.model");
 const order_model_1 = require("../models/order.model");
 const stripe_1 = __importDefault(require("stripe"));
+const user_model_1 = require("../models/user.model");
 const stripe = new stripe_1.default(process.env.STRIPE_SECRET_KEY);
 const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -35,6 +36,24 @@ const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getOrders = getOrders;
+const getOrdersForDeliveryMan = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userId = req.query.userId;
+        console.log(userId);
+        const orders = yield order_model_1.Order.find({ deliveryUser: { $exists: true, $eq: userId }, status: "confirmed" })
+            .populate("user")
+            .populate("restaurant");
+        res.status(200).json({
+            success: true,
+            orders,
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+});
+exports.getOrdersForDeliveryMan = getOrdersForDeliveryMan;
 const createCheckoutSession = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const checkoutSessionRequest = req.body;
@@ -120,6 +139,12 @@ const stripeWebhook = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             // Update the order with the amount and status
             if (session.amount_total) {
                 order.totalAmount = session.amount_total;
+                //find a user with delivery role and attach to the order
+                const deliveryUsers = yield user_model_1.User.find({ deliveryUser: true });
+                const deliveryUser = deliveryUsers[Math.floor(Math.random() * deliveryUsers.length)];
+                if (deliveryUser) {
+                    order.deliveryUser = deliveryUser.id;
+                }
             }
             order.status = "confirmed";
             yield order.save();
