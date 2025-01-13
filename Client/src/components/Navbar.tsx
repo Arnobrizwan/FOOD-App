@@ -46,7 +46,7 @@ import { useThemeStore } from "@/store/useThemeStore";
 const Navbar = () => {
   const { user, loading, logout } = useUserStore();
   const { cart } = useCartStore();
-  const {setTheme} = useThemeStore();
+  const { setTheme } = useThemeStore();
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -58,7 +58,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-6">
             <Link to="/">Home</Link>
             <Link to="/profile">Profile</Link>
-            <Link to="/order/status">Order</Link>
+            <Link to={user.deliveryUser ? "/delivery/orders" : "/order/status"}>Order</Link>
 
             {user?.admin && (
               <Menubar>
@@ -90,8 +90,8 @@ const Navbar = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={()=> setTheme('light')}>Light</DropdownMenuItem>
-                  <DropdownMenuItem onClick={()=> setTheme('dark')}>Dark</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -113,19 +113,12 @@ const Navbar = () => {
               </Avatar>
             </div>
             <div>
-              {loading ? (
-                <Button className="bg-orange hover:bg-hoverOrange">
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait
-                </Button>
-              ) : (
-                <Button
-                  onClick={logout}
-                  className="bg-orange hover:bg-hoverOrange"
-                >
-                  Logout
-                </Button>
-              )}
+              <Button
+                onClick={logout}
+                className="bg-orange hover:bg-hoverOrange"
+              >
+                Logout
+              </Button>
             </div>
           </div>
         </div>
@@ -142,7 +135,7 @@ export default Navbar;
 
 const MobileNavbar = () => {
   const { user, logout, loading } = useUserStore();
-  const {setTheme} = useThemeStore();
+  const { setTheme } = useThemeStore();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -229,19 +222,13 @@ const MobileNavbar = () => {
             <h1 className="font-bold">Arnob Rizwan</h1>
           </div>
           <SheetClose asChild>
-            {loading ? (
-              <Button className="bg-orange hover:bg-hoverOrange">
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <Button
-                onClick={logout}
-                className="bg-orange hover:bg-hoverOrange"
-              >
-                Logout
-              </Button>
-            )}
+
+            <Button
+              onClick={logout}
+              className="bg-orange hover:bg-hoverOrange"
+            >
+              Logout
+            </Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>

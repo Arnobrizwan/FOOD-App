@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { Restaurant } from "../models/restaurant.model";
 import { Order } from "../models/order.model";
 import Stripe from "stripe";
+import { User } from "../models/user.model";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -38,6 +39,23 @@ export const getOrders = async (req: Request, res: Response) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
+
+export const getOrdersForDeliveryMan = async (req: Request, res: Response) => {
+  try {
+    const userId = req.query.userId as string;
+    console.log(userId);
+    const orders = await Order.find({ deliveryUser: { $exists: true, $eq: userId }, status: "confirmed" })
+      .populate("user")
+      .populate("restaurant");
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+}
 
 export const createCheckoutSession = async (req: Request, res: Response) => {
   try {
@@ -133,6 +151,12 @@ export const stripeWebhook = async (req: Request, res: Response) => {
       // Update the order with the amount and status
       if (session.amount_total) {
         order.totalAmount = session.amount_total;
+        //find a user with delivery role and attach to the order
+        const deliveryUsers = await User.find({ deliveryUser: true });
+        const deliveryUser = deliveryUsers[Math.floor(Math.random() * deliveryUsers.length)];
+        if (deliveryUser) {
+          order.deliveryUser = deliveryUser.id;
+        }
       }
       order.status = "confirmed";
 

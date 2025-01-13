@@ -1,0 +1,1 @@
+export const API_END_POINT = process.env.NODE_ENV === 'production' ? 'https://food-app-2atv.onrender.com' : 'http://localhost:3000';

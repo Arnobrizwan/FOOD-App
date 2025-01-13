@@ -1,0 +1,1 @@
+export const FRONTEND_URL = process.env.NODE_ENV === 'production' ? 'https://food-app-2atv.onrender.com' : 'http://localhost:5175';

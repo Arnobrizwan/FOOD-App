@@ -35,7 +35,7 @@ const CheckoutConfirmPage = ({
     country: user?.country || "",
   });
   const { cart } = useCartStore();
-  const { restaurant } = useRestaurantStore();
+  const { restaurant, searchedRestaurant, singleRestaurant } = useRestaurantStore();
   const { createCheckoutSession, loading } = useOrderStore();
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,6 +45,7 @@ const CheckoutConfirmPage = ({
     e.preventDefault();
     // api implementation start from here
     try {
+      console.log(restaurant)
       const checkoutData: CheckoutSessionRequest = {
         cartItems: cart.map((cartItem) => ({
           menuId: cartItem._id,
@@ -54,7 +55,8 @@ const CheckoutConfirmPage = ({
           quantity: cartItem.quantity.toString(),
         })),
         deliveryDetails: input,
-        restaurantId: restaurant?._id as string,
+        user: user?._id as string,
+        restaurantId: singleRestaurant?._id as string,
       };
       await createCheckoutSession(checkoutData);
     } catch (error) {

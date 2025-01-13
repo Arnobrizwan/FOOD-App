@@ -28,4 +28,5 @@ export type OrderState = {
     orders:Orders[];
     createCheckoutSession: (checkoutSessionRequest:CheckoutSessionRequest) => Promise<void>;
     getOrderDetails: () => Promise<void>;
+    getOrdersForDeliveryMan: () => Promise<void>;
 }

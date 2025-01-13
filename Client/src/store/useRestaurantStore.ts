@@ -6,9 +6,10 @@ import axios from "axios";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { API_END_POINT as baseURL } from "../lib/config";
 
 // const API_END_POINT = "http://localhost:3000/api/v1/restaurant";
-const API_END_POINT = "https://food-app-2atv.onrender.com/api/v1/restaurant";
+const API_END_POINT = baseURL + "/api/v1/restaurant";
 
 //axios.defaults.withCredentials = false;
 

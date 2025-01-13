@@ -5,12 +5,12 @@ import {isAuthenticated} from "../middlewares/isAuthenticated";
 
 const router = express.Router();
 
-router.route("/").post(isAuthenticated, upload.single("imageFile"), createRestaurant);
-router.route("/").get(isAuthenticated, getRestaurant);
-router.route("/").put(isAuthenticated, upload.single("imageFile"), updateRestaurant);
-router.route("/order").get(isAuthenticated,  getRestaurantOrder);
-router.route("/order/:orderId/status").put(isAuthenticated, updateOrderStatus);
-router.route("/search/:searchText").get(isAuthenticated, searchRestaurant);
-router.route("/:id").get(isAuthenticated, getSingleRestaurant);
+router.route("/").post(upload.single("imageFile"), createRestaurant);
+router.route("/").get(getRestaurant);
+router.route("/").put(upload.single("imageFile"), updateRestaurant);
+router.route("/order").get( getRestaurantOrder);
+router.route("/order/:orderId/status").put(updateOrderStatus);
+router.route("/search/:searchText").get(searchRestaurant);
+router.route("/:id").get(getSingleRestaurant);
 
 export default router;

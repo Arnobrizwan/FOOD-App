@@ -22,6 +22,7 @@ import { useThemeStore } from "./store/useThemeStore";
 import ForgotPassword from "./auth/ForgotPassword";
 import Login from "./auth/Login";
 import Cart from "./components/Cart";
+import DeliveryManOrders from "./deliveryMan/DeliveryManOrders";
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useUserStore();
@@ -49,6 +50,18 @@ const AdminRoute = ({children}:{children:React.ReactNode}) => {
     return <Navigate to="/login" replace/>
   }
   if(!user?.admin){
+    return <Navigate to="/" replace/>
+  }
+
+  return children;
+}
+
+const DeliveryManRoute = ({children}:{children:React.ReactNode}) => {
+  const {user, isAuthenticated} = useUserStore();
+  if(!isAuthenticated){
+    return <Navigate to="/login" replace/>
+  }
+  if(!user?.deliveryUser){
     return <Navigate to="/" replace/>
   }
 
@@ -101,6 +114,10 @@ const appRouter = createBrowserRouter([
         path: "/admin/orders",
         element:<AdminRoute><Orders /></AdminRoute>,
       },
+      {
+        path: "/delivery/orders",
+        element:<DeliveryManRoute><DeliveryManOrders /></DeliveryManRoute>,
+      }
     ],
   },
   {
