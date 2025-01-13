@@ -309,7 +309,7 @@ const AddMenu = () => {
                 )}
               </div>
               <div>
-                <Label>Price in (RM)</Label>
+                <Label>Price in RM</Label>
                 <Input
                   type="number"
                   name="price"
@@ -364,7 +364,7 @@ const AddMenu = () => {
               </h1>
               <p className="text-sm text-gray-600 mt-1">{menu.description}</p>
               <h2 className="text-md font-semibold mt-2">
-                Price: <span className="text-[#D19254]">{menu.price}</span>
+                Price (RM): <span className="text-[#D19254]">{menu.price}</span>
               </h2>
             </div>
             <Button
