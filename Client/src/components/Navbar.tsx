@@ -58,25 +58,46 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-6">
             <Link to="/">Home</Link>
             <Link to="/profile">Profile</Link>
-            <Link to={user.deliveryUser ? "/delivery/orders" : "/order/status"}>Order</Link>
+          {/* Conditionally render Order link */}
+          {user ? (
+              <Link to={user.deliveryUser ? "/delivery/orders" : "/order/status"}>
+                Order
+              </Link>
+            ) : null}
 
-            {user?.admin && (
-              <Menubar>
-                <MenubarMenu>
-                  <MenubarTrigger>Dashboard</MenubarTrigger>
-                  <MenubarContent>
-                    <Link to="/admin/restaurant">
-                      <MenubarItem>Restaurant</MenubarItem>
-                    </Link>
-                    <Link to="/admin/menu">
-                      <MenubarItem>Menu</MenubarItem>
-                    </Link>
-                    <Link to="/admin/orders">
-                      <MenubarItem>Orders</MenubarItem>
-                    </Link>
-                  </MenubarContent>
-                </MenubarMenu>
-              </Menubar>
+            {/* Conditionally render Dashboard for admin and delivery users */}
+            {user && (
+              <>
+                {user.deliveryUser ? (
+                  <Link to="/delivery/orders">
+                    <Menubar>
+                      <MenubarMenu>
+                        <MenubarTrigger>Dashboard</MenubarTrigger>
+                        <MenubarContent>
+                          <MenubarItem>Delivery Orders</MenubarItem>
+                        </MenubarContent>
+                      </MenubarMenu>
+                    </Menubar>
+                  </Link>
+                ) : user.admin ? (
+                  <Menubar>
+                    <MenubarMenu>
+                      <MenubarTrigger>Dashboard</MenubarTrigger>
+                      <MenubarContent>
+                        <Link to="/admin/restaurant">
+                          <MenubarItem>Restaurant</MenubarItem>
+                        </Link>
+                        <Link to="/admin/menu">
+                          <MenubarItem>Menu</MenubarItem>
+                        </Link>
+                        <Link to="/admin/orders">
+                          <MenubarItem>Orders</MenubarItem>
+                        </Link>
+                      </MenubarContent>
+                    </MenubarMenu>
+                  </Menubar>
+                ) : null}
+              </>
             )}
           </div>
           <div className="flex items-center gap-4">
@@ -90,8 +111,12 @@ const Navbar = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("light")}>
+                    Light
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("dark")}>
+                    Dark
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -113,10 +138,7 @@ const Navbar = () => {
               </Avatar>
             </div>
             <div>
-              <Button
-                onClick={logout}
-                className="bg-orange hover:bg-hoverOrange"
-              >
+              <Button onClick={logout} className="bg-orange hover:bg-hoverOrange">
                 Logout
               </Button>
             </div>
@@ -130,6 +152,8 @@ const Navbar = () => {
     </div>
   );
 };
+
+
 
 export default Navbar;
 
