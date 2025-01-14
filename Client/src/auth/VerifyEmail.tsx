@@ -1,6 +1,5 @@
 //@ts-nocheck
 
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useUserStore } from "@/store/useUserStore";
@@ -39,7 +38,8 @@ const VerifyEmail = () => {
     try {
       await verifyEmail(verificationCode);
       navigate("/");
-    } catch (error) {console.log(error);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -91,4 +91,3 @@ const VerifyEmail = () => {
 };
 
 export default VerifyEmail;
-
