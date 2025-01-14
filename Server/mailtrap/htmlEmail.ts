@@ -77,7 +77,7 @@ export const htmlContent: string = `
     `;
 
 export const generateWelcomeEmailHtml = (name: string) => {
-    return `
+  return `
           <html>
             <head>
               <style>
@@ -133,7 +133,7 @@ export const generateWelcomeEmailHtml = (name: string) => {
 };
 
 export const generatePasswordResetEmailHtml = (resetURL: string) => {
-    return `
+  return `
       <html>
         <head>
           <style>
@@ -196,10 +196,10 @@ export const generatePasswordResetEmailHtml = (resetURL: string) => {
         </body>
       </html>
     `;
-  };
+};
 
-  export const generateResetSuccessEmailHtml = () => {
-    return `
+export const generateResetSuccessEmailHtml = () => {
+  return `
       <html>
         <head>
           <style>
@@ -251,4 +251,4 @@ export const generatePasswordResetEmailHtml = (resetURL: string) => {
         </body>
       </html>
     `;
-  };
+};
