@@ -23,6 +23,13 @@ import ForgotPassword from "./auth/ForgotPassword";
 import Login from "./auth/Login";
 import Cart from "./components/Cart";
 import DeliveryManOrders from "./deliveryMan/DeliveryManOrders";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useUserStore();
@@ -38,31 +45,31 @@ const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
 
 const AuthenticatedUser = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, user } = useUserStore();
-  if(isAuthenticated && user?.isVerified){
-    return <Navigate to="/" replace/>
+  if (isAuthenticated && user?.isVerified) {
+    return <Navigate to="/" replace />
   }
   return children;
 };
 
-const AdminRoute = ({children}:{children:React.ReactNode}) => {
-  const {user, isAuthenticated} = useUserStore();
-  if(!isAuthenticated){
-    return <Navigate to="/login" replace/>
+const AdminRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, isAuthenticated } = useUserStore();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
   }
-  if(!user?.admin){
-    return <Navigate to="/" replace/>
+  if (!user?.admin) {
+    return <Navigate to="/" replace />
   }
 
   return children;
 }
 
-const DeliveryManRoute = ({children}:{children:React.ReactNode}) => {
-  const {user, isAuthenticated} = useUserStore();
-  if(!isAuthenticated){
-    return <Navigate to="/login" replace/>
+const DeliveryManRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, isAuthenticated } = useUserStore();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
   }
-  if(!user?.deliveryUser){
-    return <Navigate to="/" replace/>
+  if (!user?.deliveryUser) {
+    return <Navigate to="/" replace />
   }
 
   return children;
@@ -104,29 +111,29 @@ const appRouter = createBrowserRouter([
       // admin services start from here
       {
         path: "/admin/restaurant",
-        element:<AdminRoute><Restaurant /></AdminRoute>,
+        element: <AdminRoute><Restaurant /></AdminRoute>,
       },
       {
         path: "/admin/menu",
-        element:<AdminRoute><AddMenu /></AdminRoute>,
+        element: <AdminRoute><AddMenu /></AdminRoute>,
       },
       {
         path: "/admin/orders",
-        element:<AdminRoute><Orders /></AdminRoute>,
+        element: <AdminRoute><Orders /></AdminRoute>,
       },
       {
         path: "/delivery/orders",
-        element:<DeliveryManRoute><DeliveryManOrders /></DeliveryManRoute>,
+        element: <DeliveryManRoute><DeliveryManOrders /></DeliveryManRoute>,
       }
     ],
   },
   {
     path: "/login",
-    element:<AuthenticatedUser><Login /></AuthenticatedUser>,
+    element: <AuthenticatedUser><Login /></AuthenticatedUser>,
   },
   {
     path: "/signup",
-    element:<AuthenticatedUser><Signup /></AuthenticatedUser> ,
+    element: <AuthenticatedUser><Signup /></AuthenticatedUser>,
   },
   {
     path: "/forgot-password",
@@ -143,21 +150,23 @@ const appRouter = createBrowserRouter([
 ]);
 
 function App() {
-  const initializeTheme = useThemeStore((state:any) => state.initializeTheme);
-  const {checkAuthentication, isCheckingAuth} = useUserStore();
+  const initializeTheme = useThemeStore((state: any) => state.initializeTheme);
+  const { checkAuthentication, isCheckingAuth } = useUserStore();
   // checking auth every time when page is loaded
-  useEffect(()=>{
+  useEffect(() => {
     checkAuthentication();
     initializeTheme();
-  },[checkAuthentication])
+  }, [checkAuthentication])
 
   console.log('test')
 
-  if(isCheckingAuth) return <Loading/>
+  if (isCheckingAuth) return <Loading />
   return (
-    <main>
-      <RouterProvider router={appRouter}></RouterProvider>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <main>
+        <RouterProvider router={appRouter}></RouterProvider>
+      </main>
+    </QueryClientProvider>
   );
 }
 

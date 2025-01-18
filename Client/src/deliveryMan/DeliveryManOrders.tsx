@@ -1,6 +1,7 @@
 //@ts-nocheck
 
 
+import SafetyMap from "@/components/Map";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -29,6 +30,7 @@ const DeliveryManOrders = () => {
       <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-10">
         Orders Overview
       </h1>
+      <SafetyMap />
       <div className="space-y-8">
         {/* Restaurant Orders diplay here  */}
         {orders.map((order) => (
